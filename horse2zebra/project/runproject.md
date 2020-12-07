@@ -1,3 +1,27 @@
+## 运行
+### 数据集
+
+下载
+
+bash ./datasets/download_cyclegan_dataset.sh horse2zebra
+
+然后放到datasets 解压好。
+<img src='./datahou.png' width="100px"/>
+
+### 训练
+
+```python
+CUDA_VISIBLE_DEVICES=3,4 python train.py --dataroot ./datasets/horse2zebra --name horse2zebra_cyclegan --model cycle_gan
+```
+To see more intermediate results, check out ./checkpoints/maps_cyclegan/web/index.html.
+
+### 测试
+
+```python
+ CUDA_VISIBLE_DEVICES=3,4 python test.py --dataroot ./datasets/horse2zebra --name horse2zebra_cyclegan --model cycle_gan
+```
+The test results will be saved to a html file here: ./results/maps_cyclegan/latest_test/index.html.
+
 ## loss与网络分析
 ### loss记录
 #### 开始时的loss
@@ -81,26 +105,3 @@ idt_B 同上
 这有个输出的rec图片，刚开始没有看源码，不知道它什么意思。现在我们知道了，是循环输出的图片。用于比较差异。
 <img src='./rec.png' width="400px"/>
 
-## 运行
-### 数据集
-
-下载
-
-bash ./datasets/download_cyclegan_dataset.sh horse2zebra
-
-然后放到datasets 解压好。
-<img src='./datahou.png' width="100px"/>
-
-### 训练
-
-```python
-CUDA_VISIBLE_DEVICES=3,4 python train.py --dataroot ./datasets/horse2zebra --name horse2zebra_cyclegan --model cycle_gan
-```
-To see more intermediate results, check out ./checkpoints/maps_cyclegan/web/index.html.
-
-### 测试
-
-```python
- CUDA_VISIBLE_DEVICES=3,4 python test.py --dataroot ./datasets/horse2zebra --name horse2zebra_cyclegan --model cycle_gan
-```
-The test results will be saved to a html file here: ./results/maps_cyclegan/latest_test/index.html.
